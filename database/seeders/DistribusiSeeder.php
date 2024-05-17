@@ -19,7 +19,7 @@ class DistribusiSeeder extends Seeder
                 'id_barang' => 1,
                 'id_ruang' => 1,
                 'id_detail_status_awal' => 1,
-                'id_detail_status_akhir' => 2,
+                'id_detail_status_akhir' => 1,
             ],
             [
                 'id_distribusi' => 2,

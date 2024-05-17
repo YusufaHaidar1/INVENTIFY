@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user')->index();
             $table->string('nama_barang');
             $table->string('NUP');
-            $table->string('satuan');
             $table->string('harga_perolehan');
             $table->dateTime('tanggal_pencatatan');
 

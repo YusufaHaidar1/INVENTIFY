@@ -20,7 +20,6 @@ class ListBarangSeeder extends Seeder
                 'id_user' => 1,
                 'nama_barang' => 'Lemari Besi (Oxio)',
                 'NUP' => '1',
-                'satuan' => 'Buah',
                 'harga_perolehan' => '150000',
                 'tanggal_pencatatan' => now()
             ],
@@ -30,7 +29,6 @@ class ListBarangSeeder extends Seeder
                 'id_user' => 1,
                 'nama_barang' => 'Lemari Besi (Oxio)',
                 'NUP' => '2',
-                'satuan' => 'Buah',
                 'harga_perolehan' => '150000',
                 'tanggal_pencatatan' => now()
             ]

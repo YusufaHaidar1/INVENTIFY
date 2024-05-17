@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_distribusi_barang', function (Blueprint $table) {
             $table->id('id_distribusi');
-            $table->unsignedBigInteger('id_barang')->index();
+            $table->unsignedBigInteger('id_barang')->index()->unique();
             $table->unsignedBigInteger('id_ruang')->index();
             $table->unsignedBigInteger('id_detail_status_awal')->index();
             $table->unsignedBigInteger('id_detail_status_akhir')->index();

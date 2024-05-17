@@ -17,11 +17,13 @@ class KodeBarangSeeder extends Seeder
             [
                 'id_kode_barang' => 1,
                 'kode_barang' => '3050104001',
+                'satuan' => 'Buah',
                 'deskripsi_barang' => 'Lemari Besi / Metal'
             ],
             [
-                'id_role' => 2,
-                'kode_role' => '3030101005',
+                'id_kode_barang' => 2,
+                'kode_barang' => '3030101005',
+                'satuan' => 'Buah',
                 'deskripsi_barang' => 'Mesin Bor'
             ]
         ];
