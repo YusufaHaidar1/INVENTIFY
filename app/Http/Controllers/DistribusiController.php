@@ -146,14 +146,12 @@ class DistribusiController extends Controller
             'id_barang'              =>'required|integer:detail_distribusi_barang,' .$id. ',id_distribusi',
             'id_ruang'               =>'required|integer',
             'id_detail_status_awal'  =>'required|integer',
-            'id_detail_status_akhir' =>'required|integer'
         ]);
 
         DistribusiModel::find($id)->update([
             'id_barang'              => $request->id_barang,
             'id_ruang'               => $request->id_ruang,
             'id_detail_status_awal'  => $request->id_detail_status_awal,
-            'id_detail_status_akhir' => $request->id_detail_status_akhir
         ]);
 
         return redirect('/distribusi')->with('success', 'Data berhasil diubah!');;

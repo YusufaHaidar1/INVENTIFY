@@ -60,7 +60,7 @@
             <div class="form-group row">
                 <label class="col-1 control-label col-form-label">Status Akhir</label>
                 <div class="col-11">
-                    <select class="form-control" id="id_detail_status_akhir" name="id_detail_status_akhir" required>
+                    <select class="form-control" id="id_detail_status_akhir" name="id_detail_status_akhir" disabled>
                         <option value="">- Pilih Status Akhir -</option>
                     @foreach($statusAkhir as $item)
                         <option value="{{ $item->id_detail_status }}" @if($item->id_detail_status == $distribusi->id_detail_status_akhir) selected @endif>{{ $item->kode_status}} - {{ $item->nama_status}}</option>
