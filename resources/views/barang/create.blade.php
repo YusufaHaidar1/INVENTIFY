@@ -13,12 +13,12 @@
             <!-- Initial form fields -->
             <div class="dynamicForm">
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Kode</label>
+                    <label class="col-1 control-label col-form-label">Kode & Nama Barang</label>
                     <div class="col-11">
                         <select class="form-control" name="id_kode_barang[]" required>
-                            <option value="">- Pilih Kode -</option>
+                            <option value="">- Pilih Kode & Nama Barang -</option>
                             @foreach($kode as $item)
-                                <option value="{{ $item->id_kode_barang }}">{{ $item->deskripsi_barang}}</option>
+                                <option value="{{ $item->id_kode_barang }}">{{ $item->kode_barang}} - {{ $item->deskripsi_barang}}</option>
                             @endforeach
                         </select>
                         @error('id_kode_barang')
