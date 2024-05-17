@@ -25,7 +25,17 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Nama Barang</label>
+                <label class="col-1 control-label col-form-label">Satuan Barang</label>
+                <div class="col-11">
+                    <select class="form-control" id="satuan" name="satuan" required>
+                        <option value="Buah" <?php echo ($kode->satuan == 'Buah') ? 'selected' : ''; ?>>Buah</option>
+                        <option value="Ekor" <?php echo ($kode->satuan == 'Ekor') ? 'selected' : ''; ?>>Ekor</option>
+                        <option value="M2" <?php echo ($kode->satuan == 'M2') ? 'selected' : ''; ?>>M2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-1 control-label col-form-label">Deskripsi Barang</label>
                 <div class="col-11">
                     <input type="text" class="form-control" id="deskripsi_barang" name="deskripsi_barang" value="{{ old('deskripsi_barang', $kode->deskripsi_barang) }}" required>
                 @error('deskripsi_barang')

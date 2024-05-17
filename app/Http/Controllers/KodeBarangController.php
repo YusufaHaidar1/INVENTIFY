@@ -27,7 +27,7 @@ class KodeBarangController extends Controller
 
     public function list(Request $request)
     {
-        $kodes = KodeBarangModel::select('id_kode_barang', 'kode_barang', 'deskripsi_barang');
+        $kodes = KodeBarangModel::select('id_kode_barang', 'kode_barang', 'satuan', 'deskripsi_barang');
 
         return DataTables::of($kodes)
             ->addIndexColumn() // menambahkan kolom index / no urut (default deskripsi_barang kolom: DT_RowIndex)
@@ -58,12 +58,14 @@ class KodeBarangController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'kode_barang' =>'required | numeric | unique:detail_kode_barang,kode_barang',
+            'kode_barang' =>'required | string | unique:detail_kode_barang,kode_barang',
+            'satuan' =>'required | string ',
             'deskripsi_barang' =>'required | string ',
         ]);
 
         KodeBarangModel::create([
             'kode_barang' => $request->kode_barang,
+            'satuan' => $request->satuan,
             'deskripsi_barang' => $request->deskripsi_barang,
         ]);
 
@@ -106,12 +108,14 @@ class KodeBarangController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'kode_barang' => 'required|numeric|unique:detail_kode_barang,kode_barang,' . $id . ',kode_barang',
+            'kode_barang' => 'required|string|unique:detail_kode_barang,kode_barang,' . $id . ',id_kode_barang',
+            'satuan' => 'required|string',
             'deskripsi_barang' => 'required|string',
         ]);
 
         KodeBarangModel::find($id)->update([
             'kode_barang' => $request->kode_barang,
+            'satuan' => $request->satuan,
             'deskripsi_barang' => $request->deskripsi_barang,
         ]);
 

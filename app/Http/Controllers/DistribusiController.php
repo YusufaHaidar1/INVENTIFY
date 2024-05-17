@@ -77,7 +77,11 @@ class DistribusiController extends Controller
         ];
 
         $activeMenu = 'distribusi';
-        $barang = BarangModel::all();
+        // Get all ids of id_barang already present in DistribusiModel
+        $usedBarangIds = DistribusiModel::pluck('id_barang')->toArray();
+
+        // Fetch items not in the usedBarangIds
+        $barang = BarangModel::whereNotIn('id_barang', $usedBarangIds)->get();
         $ruang = RuangModel::all();
         $statusAwal = StatusModel::all();
         $statusAkhir = StatusModel::all();

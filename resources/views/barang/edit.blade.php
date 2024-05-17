@@ -16,12 +16,12 @@
             @csrf
             {!! method_field('PUT')!!}
             <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Kode</label>
+                <label class="col-1 control-label col-form-label">Kode & Deskripsi Barang</label>
                 <div class="col-11">
                     <select class="form-control" id="id_kode_barang" name="id_kode_barang" required>
-                        <option value="">- Pilih Kode -</option>
+                        <option value="">- Pilih Kode & Deskripsi Barang -</option>
                     @foreach($kode as $item)
-                        <option value="{{ $item->id_kode_barang }}" @if($item->id_kode_barang == $barang->id_kode_barang) selected @endif>{{ $item->deskripsi_barang}}</option>
+                        <option value="{{ $item->id_kode_barang }}" @if($item->id_kode_barang == $barang->id_kode_barang) selected @endif>{{ $item->kode_barang}} - {{ $item->deskripsi_barang}}</option>
                     @endforeach
                     </select>
                     @error('id_kode_barang')
@@ -57,15 +57,6 @@
                 <div class="col-11">
                     <input type="text" class="form-control" id="NUP" name="NUP" value="{{ old('NUP', $barang->NUP) }}" required>
                 @error('NUP')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Satuan</label>
-                <div class="col-11">
-                    <input type="text" class="form-control" id="satuan" name="satuan" value="{{ old('satuan', $barang->satuan) }}" required>
-                @error('satuan')
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
                 </div>

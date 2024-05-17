@@ -13,9 +13,9 @@
             <div class="col-11">
                 <select class="form-control" id="id_barang" name="id_barang" required>
                     <option value="">- Pilih NUP & Barang -</option>
-                @foreach($barang as $item)
-                    <option value="{{ $item->id_barang }}">{{ $item->NUP}} - {{ $item->nama_barang}}</option>
-                @endforeach
+                    @foreach($barang as $item)
+                        <option value="{{ $item->id_barang }}">{{ $item->NUP }} - {{ $item->nama_barang }}</option>
+                    @endforeach
                 </select>
                 @error('id_barang')
                     <small class="form-text text-danger">{{ $message }}</small>

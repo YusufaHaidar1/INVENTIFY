@@ -13,10 +13,10 @@
             <!-- Initial form fields -->
             <div class="dynamicForm">
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Kode & Nama Barang</label>
+                    <label class="col-1 control-label col-form-label">Kode & Deskripsi Barang</label>
                     <div class="col-11">
                         <select class="form-control" name="id_kode_barang[]" required>
-                            <option value="">- Pilih Kode & Nama Barang -</option>
+                            <option value="">- Pilih Kode & Deskripsi Barang -</option>
                             @foreach($kode as $item)
                                 <option value="{{ $item->id_kode_barang }}">{{ $item->kode_barang}} - {{ $item->deskripsi_barang}}</option>
                             @endforeach
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Nama Barang</label>
+                    <label class="col-1 control-label col-form-label">Merk Barang</label>
                     <div class="col-11">
                         <input type="text" class="form-control" name="nama_barang[]" value="{{ old('nama_barang') }}" required>
                         @error('nama_barang')
@@ -54,15 +54,6 @@
                     <div class="col-11">
                         <input type="number" class="form-control" name="NUP[]" value="{{ old('NUP') }}" required>
                         @error('NUP')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Satuan</label>
-                    <div class="col-11">
-                        <input type="text" class="form-control" name="satuan[]" value="{{ old('satuan') }}" required>
-                        @error('satuan')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>

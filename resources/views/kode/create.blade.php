@@ -18,6 +18,16 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-1 control-label col-form-label">Satuan Barang</label>
+            <div class="col-11">
+                <select class="form-control" id="satuan" name="satuan" required>
+                    <option value="Buah">Buah</option>
+                    <option value="Ekor">Ekor</option>
+                    <option value="M2">M2</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-1 control-label col-form-label">Deskripsi Barang</label>
             <div class="col-11">
                 <input type="text" class="form-control" id="deskripsi_barang" name="deskripsi_barang" value="{{ old('deskripsi_barang') }}" required>

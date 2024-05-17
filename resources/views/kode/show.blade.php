@@ -22,6 +22,10 @@
             <td>{{ $kode->kode_barang }}</td>
         </tr>
         <tr>
+            <th>Satuan Barang</th>
+            <td>{{ $kode->satuan }}</td>
+        </tr>
+        <tr>
             <th>Deskripsi Barang</th>
             <td>{{ $kode->deskripsi_barang }}</td>
         </tr>

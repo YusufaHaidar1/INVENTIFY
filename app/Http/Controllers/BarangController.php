@@ -32,7 +32,7 @@ class BarangController extends Controller
 
     public function list(Request $request)
     {
-        $products = BarangModel::select('id_barang', 'NUP', 'nama_barang', 'satuan', 'harga_perolehan', 'tanggal_pencatatan', 'id_kode_barang', 'id_user')
+        $products = BarangModel::select('id_barang', 'NUP', 'nama_barang', 'harga_perolehan', 'tanggal_pencatatan', 'id_kode_barang', 'id_user')
                     ->with('user')
                     ->with('kode');
 
@@ -80,7 +80,6 @@ class BarangController extends Controller
             'id_user.*'            => 'required|integer',
             'nama_barang.*'        => 'required|string',
             'NUP.*'                => 'required|string',
-            'satuan.*'             => 'required|string',
             'harga_perolehan.*'    => 'required|string',
             'tanggal_pencatatan.*' => 'required|date_format:Y-m-d\TH:i',
         ]);
@@ -92,7 +91,6 @@ class BarangController extends Controller
                 'id_user'               => $request->id_user[$key],
                 'nama_barang'           => $request->nama_barang[$key],
                 'NUP'                   => $request->NUP[$key],
-                'satuan'                => $request->satuan[$key],
                 'harga_perolehan'       => $request->harga_perolehan[$key],
                 'tanggal_pencatatan'    => $request->tanggal_pencatatan[$key],
             ]);
@@ -141,7 +139,6 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang'           =>'required | string ',
             'NUP'                   => 'required | string | :detail_barang,'.$id.',id_barang',
-            'satuan'                => 'required | string',
             'harga_perolehan'       =>'required | string',
             'tanggal_pencatatan'    =>'required | date_format:Y-m-d\TH:i',
             'id_kode_barang'        =>'required | integer',
@@ -153,7 +150,6 @@ class BarangController extends Controller
             'id_user'               => $request->id_user,
             'nama_barang'           => $request->nama_barang,
             'NUP'                   => $request->NUP,
-            'satuan'                => $request->satuan,
             'harga_perolehan'       => $request->harga_perolehan,
             'tanggal_pencatatan'    => $request->tanggal_pencatatan,
         ]);

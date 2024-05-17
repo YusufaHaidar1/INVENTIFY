@@ -13,6 +13,6 @@ class KodeBarangModel extends Model
     protected $primaryKey = 'id_kode_barang';
     public $timestamps = false;
 
-    protected $fillable = ['kode_barang', 'deskripsi_barang'];
+    protected $fillable = ['kode_barang', 'satuan', 'deskripsi_barang'];
 
 }

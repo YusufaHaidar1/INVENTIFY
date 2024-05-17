@@ -46,7 +46,7 @@
                         <th>ID</th>
                         <th>Admin Pengelola</th>
                         <th>Kode Barang</th>
-                        <th>Nama Barang</th>
+                        <th>Merk Barang</th>
                         <th>NUP</th>
                         <th>Satuan</th>
                         <th>Harga Perolehan</th>
@@ -107,7 +107,7 @@
                 searchable: true // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
-                data: "satuan",
+                data: "kode.satuan",
                 className: "",
                 orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
                 searchable: false // searchable: true, jika ingin kolom ini bisa dicari
