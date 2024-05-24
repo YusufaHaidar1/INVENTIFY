@@ -34,9 +34,9 @@ class StatusController extends Controller
         return DataTables::of($statuss)
             ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addColumn('aksi', function ($status) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/status/' . $status->id_detail_status) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/status/' . $status->id_detail_status . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/status/' . $status->id_detail_status) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                $btn = '<a href="' . url('/admin/status/' . $status->id_detail_status) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/status/' . $status->id_detail_status . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/status/' . $status->id_detail_status) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -69,7 +69,7 @@ class StatusController extends Controller
             'nama_status'       => $request->nama_status
         ]);
 
-        return redirect('/status')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/status')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id){
@@ -117,21 +117,21 @@ class StatusController extends Controller
             'nama_status'       => $request->nama_status
         ]);
 
-        return redirect('/status')->with('success', 'Data berhasil diubah!');;
+        return redirect('/admin/status')->with('success', 'Data berhasil diubah!');;
     }
 
     public function destroy($id)
     {
         $check = StatusModel::find($id);
         if(!$check){
-            return redirect('/status')->with('error', 'Data tidak ditemukan!');
+            return redirect('/admin/status')->with('error', 'Data tidak ditemukan!');
         }
 
         try{
             StatusModel::destroy($id);
-            return redirect('/status')->with('success', 'Data berhasil dihapus!');
+            return redirect('/admin/status')->with('success', 'Data berhasil dihapus!');
         }catch(\Illuminate\Database\QueryException $e){
-            return redirect('/status')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
+            return redirect('/admin/status')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
         }
     }
 }

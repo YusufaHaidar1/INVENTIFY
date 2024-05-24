@@ -27,7 +27,7 @@
         </tr>
         </table>
     @endempty
-    <a href="{{ url('role') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+    <a href="{{ url('/admin/role') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
     </div>
 </div>
 @endsection

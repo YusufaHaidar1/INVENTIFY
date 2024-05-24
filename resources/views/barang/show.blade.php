@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <th>Satuan</th>
-            <td>{{ $barang->satuan }}</td>
+            <td>{{ $barang->kode->satuan }}</td>
         </tr>
         <tr>
             <th>Harga Perolehan</th>
@@ -47,7 +47,7 @@
         </tr>
         </table>
     @endempty
-    <a href="{{ url('barang') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+    <a href="{{ url('/admin/barang') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
     </div>
 </div>
 @endsection

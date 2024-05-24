@@ -34,9 +34,9 @@ class RuangController extends Controller
         return DataTables::of($ruangs)
             ->addIndexColumn() // menambahkan kolom index / no urut (default deskripsi_barang kolom: DT_RowIndex)
             ->addColumn('aksi', function ($ruang) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/ruang/' . $ruang->id_ruang) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/ruang/' . $ruang->id_ruang . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/ruang/' . $ruang->id_ruang) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                $btn = '<a href="' . url('/admin/ruang/' . $ruang->id_ruang) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/ruang/' . $ruang->id_ruang . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/ruang/' . $ruang->id_ruang) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -73,7 +73,7 @@ class RuangController extends Controller
             'penanggung_jawab'  => $request->penanggung_jawab
         ]);
 
-        return redirect('/ruang')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/ruang')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id){
@@ -125,21 +125,21 @@ class RuangController extends Controller
             'penanggung_jawab'  => $request->penanggung_jawab
         ]);
 
-        return redirect('/ruang')->with('success', 'Data berhasil diubah!');;
+        return redirect('/admin/ruang')->with('success', 'Data berhasil diubah!');;
     }
 
     public function destroy($id)
     {
         $check = RuangModel::find($id);
         if(!$check){
-            return redirect('/ruang')->with('error', 'Data tidak ditemukan!');
+            return redirect('/admin/ruang')->with('error', 'Data tidak ditemukan!');
         }
 
         try{
             RuangModel::destroy($id);
-            return redirect('/ruang')->with('success', 'Data berhasil dihapus!');
+            return redirect('/admin/ruang')->with('success', 'Data berhasil dihapus!');
         }catch(\Illuminate\Database\QueryException $e){
-            return redirect('/ruang')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
+            return redirect('/admin/ruang')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
         }
     }
 }

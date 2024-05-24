@@ -30,13 +30,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('/role') }}" class="nav-link {{ $activeMenu == 'role' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/role') }}" class="nav-link {{ $activeMenu == 'role' ? 'active' : '' }}">
                       <i class="nav-icon fas fa-layer-group"></i>
                       <p>Role User</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/user') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>List User</p>
                     </a>
@@ -54,19 +54,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('/kode') }}" class="nav-link {{ $activeMenu == 'kode' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/kode') }}" class="nav-link {{ $activeMenu == 'kode' ? 'active' : '' }}">
                       <i class="nav-icon fas fa-list"></i>
                       <p>Kode Barang</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/barang') }}" class="nav-link {{ $activeMenu == 'barang' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/barang') }}" class="nav-link {{ $activeMenu == 'barang' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-server"></i>
                         <p>List Barang</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/status') }}" class="nav-link {{ $activeMenu == 'status' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/status') }}" class="nav-link {{ $activeMenu == 'status' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-exclamation"></i>
                         <p>Status Barang</p>
                     </a>
@@ -84,7 +84,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('/ruang') }}" class="nav-link {{ $activeMenu == 'ruang' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/ruang') }}" class="nav-link {{ $activeMenu == 'ruang' ? 'active' : '' }}">
                       <i class="nav-icon fas fa-address-book"></i>
                       <p>List Ruangan</p>
                     </a>
@@ -92,7 +92,7 @@
                 </ul>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('/distribusi') }}" class="nav-link {{ $activeMenu == 'distribusi' ? 'active' : '' }}">
+                    <a href="{{ url('/admin/distribusi') }}" class="nav-link {{ $activeMenu == 'distribusi' ? 'active' : '' }}">
                       <i class="nav-icon fas fa-bookmark"></i>
                       <p>Distribusi Barang JTI</p>
                     </a>

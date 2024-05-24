@@ -31,7 +31,7 @@
         </tr>
         </table>
     @endempty
-    <a href="{{ url('kode') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+    <a href="{{ url('/admin/kode') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
     </div>
 </div>
 @endsection

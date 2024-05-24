@@ -32,9 +32,9 @@ class RoleController extends Controller
         return DataTables::of($roles)
             ->addIndexColumn() // menambahkan kolom index / no urut (default nama_role kolom: DT_RowIndex)
             ->addColumn('aksi', function ($role) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/role/' . $role->id_role) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/role/' . $role->id_role . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/role/' . $role->id_role) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                $btn = '<a href="' . url('/admin/role/' . $role->id_role) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/role' . $role->id_role . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/role/' . $role->id_role) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -67,7 +67,7 @@ class RoleController extends Controller
             'nama_role' => $request->nama_role,
         ]);
 
-        return redirect('/role')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/role')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id){
@@ -115,21 +115,21 @@ class RoleController extends Controller
             'nama_role' => $request->nama_role,
         ]);
 
-        return redirect('/role')->with('success', 'Data berhasil diubah!');;
+        return redirect('/admin/role')->with('success', 'Data berhasil diubah!');;
     }
 
     public function destroy($id)
     {
         $check = RoleModel::find($id);
         if(!$check){
-            return redirect('/role')->with('error', 'Data tidak ditemukan!');
+            return redirect('/admin/role')->with('error', 'Data tidak ditemukan!');
         }
 
         try{
             RoleModel::destroy($id);
-            return redirect('/role')->with('success', 'Data berhasil dihapus!');
+            return redirect('/admin/role')->with('success', 'Data berhasil dihapus!');
         }catch(\Illuminate\Database\QueryException $e){
-            return redirect('/role')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
+            return redirect('/admin/role')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
         }
     }
 }

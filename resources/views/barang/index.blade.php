@@ -5,7 +5,7 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create')}}">Tambah</a>
+                <a class="btn btn-sm btn-primary mt-1" href="{{ url('/admin/barang/create')}}">Tambah</a>
             </div>
         </div>
             <div class="card-body">
@@ -67,7 +67,7 @@
         var dataBarang = $('#table_barang').DataTable({
             serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
             ajax: {
-            "url": "{{ url('barang/list') }}",
+            "url": "{{ url('/admin/barang/list') }}",
             "dataType": "json",
             "type": "POST",
             "data": function ( d ) {

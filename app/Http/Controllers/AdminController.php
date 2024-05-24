@@ -19,6 +19,6 @@ class AdminController extends Controller
 
         $activeMenu = 'dashboard'; // set menu yang sedang aktif
 
-        return view('admin', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('dashboard.admin', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 }

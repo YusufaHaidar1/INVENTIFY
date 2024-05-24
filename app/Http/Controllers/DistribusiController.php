@@ -57,9 +57,9 @@ class DistribusiController extends Controller
         return DataTables::of($distribusis)
             ->addIndexColumn() // menambahkan kolom index / no urut (default id_distribusi kolom: DT_RowIndex)
             ->addColumn('aksi', function ($distribusi) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/distribusi/' . $distribusi->id_distribusi) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/distribusi/' . $distribusi->id_distribusi . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/distribusi/' . $distribusi->id_distribusi) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                $btn = '<a href="' . url('/admin/distribusi/' . $distribusi->id_distribusi) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/distribusi/' . $distribusi->id_distribusi . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/distribusi/' . $distribusi->id_distribusi) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -104,7 +104,7 @@ class DistribusiController extends Controller
             'id_detail_status_akhir' => $request->id_detail_status_akhir
         ]);
 
-        return redirect('/distribusi')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/distribusi')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id){
@@ -158,21 +158,21 @@ class DistribusiController extends Controller
             'id_detail_status_awal'  => $request->id_detail_status_awal,
         ]);
 
-        return redirect('/distribusi')->with('success', 'Data berhasil diubah!');;
+        return redirect('/admin/distribusi')->with('success', 'Data berhasil diubah!');;
     }
 
     public function destroy($id)
     {
         $check = DistribusiModel::find($id);
         if(!$check){
-            return redirect('/distribusi')->with('error', 'Data tidak ditemukan!');
+            return redirect('/admin/distribusi')->with('error', 'Data tidak ditemukan!');
         }
 
         try{
             DistribusiModel::destroy($id);
-            return redirect('/distribusi')->with('success', 'Data berhasil dihapus!');
+            return redirect('/admin/distribusi')->with('success', 'Data berhasil dihapus!');
         }catch(\Illuminate\Database\QueryException $e){
-            return redirect('/distribusi')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
+            return redirect('/admin/distribusi')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
         }
     }
 }

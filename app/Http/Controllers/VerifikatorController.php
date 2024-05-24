@@ -19,6 +19,6 @@ class VerifikatorController extends Controller
 
         $activeMenu = 'dashboard'; // set menu yang sedang aktif
 
-        return view('verifikator', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('dashboard.verifikator', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 }

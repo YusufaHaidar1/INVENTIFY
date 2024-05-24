@@ -10,9 +10,9 @@
         <div class="alert alert-danger alert-dismissible">
             <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5> Data yang Anda cari tidak ditemukan.
         </div>
-        <a href="{{ url('kode') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+        <a href="{{ url('/admin/kode') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
         @else
-        <form method="POST" action="{{ url('kode/'.$kode->id_kode_barang) }}" class="form-horizontal">
+        <form method="POST" action="{{ url('/admin/kode/'.$kode->id_kode_barang) }}" class="form-horizontal">
             @csrf
             {!! method_field('PUT')!!}
             <div class="form-group row">
@@ -47,7 +47,7 @@
                 <label class="col-1 control-label col-form-label"></label>
                 <div class="col-11">
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                    <a class="btn btn-sm btn-default ml-1" href="{{ url('kode') }}">Kembali</a>
+                    <a class="btn btn-sm btn-default ml-1" href="{{ url('/admin/kode') }}">Kembali</a>
                 </div>
             </div>
         </form>

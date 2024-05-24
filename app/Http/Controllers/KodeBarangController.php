@@ -32,9 +32,9 @@ class KodeBarangController extends Controller
         return DataTables::of($kodes)
             ->addIndexColumn() // menambahkan kolom index / no urut (default deskripsi_barang kolom: DT_RowIndex)
             ->addColumn('aksi', function ($kode) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/kode/' . $kode->id_kode_barang) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/kode/' . $kode->id_kode_barang . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/kode/' . $kode->id_kode_barang) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                $btn = '<a href="' . url('/admin/kode/' . $kode->id_kode_barang) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/kode/' . $kode->id_kode_barang . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/kode/' . $kode->id_kode_barang) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -69,7 +69,7 @@ class KodeBarangController extends Controller
             'deskripsi_barang' => $request->deskripsi_barang,
         ]);
 
-        return redirect('/kode')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/kode')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id){
@@ -119,21 +119,21 @@ class KodeBarangController extends Controller
             'deskripsi_barang' => $request->deskripsi_barang,
         ]);
 
-        return redirect('/kode')->with('success', 'Data berhasil diubah!');;
+        return redirect('/admin/kode')->with('success', 'Data berhasil diubah!');;
     }
 
     public function destroy($id)
     {
         $check = KodeBarangModel::find($id);
         if(!$check){
-            return redirect('/kode')->with('error', 'Data tidak ditemukan!');
+            return redirect('/admin/kode')->with('error', 'Data tidak ditemukan!');
         }
 
         try{
             KodeBarangModel::destroy($id);
-            return redirect('/kode')->with('success', 'Data berhasil dihapus!');
+            return redirect('/admin/kode')->with('success', 'Data berhasil dihapus!');
         }catch(\Illuminate\Database\QueryException $e){
-            return redirect('/kode')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
+            return redirect('/admin/kode')->with('error', 'Data gagal dihapus! masih terdapat tabel lain yang terikat dengan data ini!');
         }
     }
 }
