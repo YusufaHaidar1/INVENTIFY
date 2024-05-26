@@ -24,7 +24,7 @@ class RuangController extends Controller
         $activeMenu = 'ruang';
         $ruang = RuangModel::all();
 
-        return view('ruang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
+        return view('admin.ruang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -55,7 +55,7 @@ class RuangController extends Controller
 
         $activeMenu = 'ruang';
 
-        return view('ruang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.ruang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -90,7 +90,7 @@ class RuangController extends Controller
 
         $activeMenu = 'ruang';
 
-        return view('ruang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
+        return view('admin.ruang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -107,7 +107,7 @@ class RuangController extends Controller
 
         $activeMenu = 'ruang';
 
-        return view('ruang.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
+        return view('admin.ruang.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

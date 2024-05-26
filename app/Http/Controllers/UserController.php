@@ -26,7 +26,7 @@ class UserController extends Controller
         $activeMenu = 'user';
         $role = RoleModel::all();
 
-        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
+        return view('admin.user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -62,7 +62,7 @@ class UserController extends Controller
         $activeMenu = 'user';
         $role = RoleModel::all();
 
-        return view('user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
+        return view('admin.user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -101,7 +101,7 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
-        return view('user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+        return view('admin.user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -119,7 +119,7 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
-        return view('user.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'role' => $role, 'activeMenu' => $activeMenu]);
+        return view('admin.user.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'role' => $role, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

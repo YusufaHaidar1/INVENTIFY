@@ -29,7 +29,7 @@ class DistribusiController extends Controller
         $ruang = RuangModel::all();
         $barang = BarangModel::all();
 
-        return view('distribusi.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -86,7 +86,7 @@ class DistribusiController extends Controller
         $statusAwal = StatusModel::all();
         $statusAkhir = StatusModel::all();
 
-        return view('distribusi.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'ruang' => $ruang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'ruang' => $ruang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -121,7 +121,7 @@ class DistribusiController extends Controller
 
         $activeMenu = 'distribusi';
 
-        return view('distribusi.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -142,7 +142,7 @@ class DistribusiController extends Controller
 
         $activeMenu = 'distribusi';
 
-        return view('distribusi.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

@@ -27,7 +27,7 @@ class BarangController extends Controller
         $kode = KodeBarangModel::all();
         $user = UserModel::all();
 
-        return view('barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
+        return view('admin.barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -70,7 +70,7 @@ class BarangController extends Controller
         $user = UserModel::all();
         $activeMenu = 'barang';
 
-        return view('barang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
+        return view('admin.barang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -113,7 +113,7 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        return view('barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
+        return view('admin.barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -132,7 +132,7 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        return view('barang.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
+        return view('admin.barang.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'kode' => $kode, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

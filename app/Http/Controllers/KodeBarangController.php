@@ -22,7 +22,7 @@ class KodeBarangController extends Controller
 
         $activeMenu = 'kode';
 
-        return view('kode.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.kode.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -53,7 +53,7 @@ class KodeBarangController extends Controller
 
         $activeMenu = 'kode';
 
-        return view('kode.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.kode.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -86,7 +86,7 @@ class KodeBarangController extends Controller
 
         $activeMenu = 'kode';
 
-        return view('kode.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'activeMenu' => $activeMenu]);
+        return view('admin.kode.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -103,7 +103,7 @@ class KodeBarangController extends Controller
 
         $activeMenu = 'kode';
 
-        return view('kode.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'activeMenu' => $activeMenu]);
+        return view('admin.kode.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kode' => $kode, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

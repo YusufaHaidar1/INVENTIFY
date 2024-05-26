@@ -24,7 +24,7 @@ class StatusController extends Controller
 
         $activeMenu = 'status';
 
-        return view('status.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.status.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -55,7 +55,7 @@ class StatusController extends Controller
 
         $activeMenu = 'status';
 
-        return view('status.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.status.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -86,7 +86,7 @@ class StatusController extends Controller
 
         $activeMenu = 'status';
 
-        return view('status.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'status' => $status, 'activeMenu' => $activeMenu]);
+        return view('admin.status.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'status' => $status, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -103,7 +103,7 @@ class StatusController extends Controller
 
         $activeMenu = 'status';
 
-        return view('status.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'status' => $status, 'activeMenu' => $activeMenu]);
+        return view('admin.status.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'status' => $status, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

@@ -22,7 +22,7 @@ class RoleController extends Controller
 
         $activeMenu = 'role';
 
-        return view('role.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.role.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
@@ -33,7 +33,7 @@ class RoleController extends Controller
             ->addIndexColumn() // menambahkan kolom index / no urut (default nama_role kolom: DT_RowIndex)
             ->addColumn('aksi', function ($role) { // menambahkan kolom aksi
                 $btn = '<a href="' . url('/admin/role/' . $role->id_role) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/admin/role' . $role->id_role . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<a href="' . url('/admin/role/' . $role->id_role . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/role/' . $role->id_role) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
@@ -53,7 +53,7 @@ class RoleController extends Controller
 
         $activeMenu = 'role';
 
-        return view('role.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.role.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -84,7 +84,7 @@ class RoleController extends Controller
 
         $activeMenu = 'role';
 
-        return view('role.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
+        return view('admin.role.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
     }
 
     public function edit(string $id){
@@ -101,7 +101,7 @@ class RoleController extends Controller
 
         $activeMenu = 'role';
 
-        return view('role.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
+        return view('admin.role.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'role' => $role, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){
