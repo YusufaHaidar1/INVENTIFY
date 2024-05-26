@@ -27,20 +27,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Admin Pencatatan</label>
-                    <div class="col-11">
-                        <select class="form-control" name="id_user[]" required>
-                            <option value="">- Pilih User -</option>
-                            @foreach($user as $item)
-                                <option value="{{ $item->id_user }}">{{ $item->nama}}</option>
-                            @endforeach
-                        </select>
-                        @error('id_user')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Merk Barang</label>
                     <div class="col-11">
                         <input type="text" class="form-control" name="nama_barang[]" value="{{ old('nama_barang') }}" required>
@@ -63,15 +49,6 @@
                     <div class="col-11">
                         <input type="text" class="form-control" name="harga_perolehan[]" value="{{ old('harga_perolehan') }}" required>
                         @error('harga_perolehan')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Tanggal Pencatatan</label>
-                    <div class="col-11">
-                        <input type="datetime-local" class="form-control" name="tanggal_pencatatan[]" required>
-                        @error('tanggal_pencatatan')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -106,10 +83,36 @@
 @push('js')
 <script>
     document.getElementById('rowAdder').addEventListener('click', function() {
-        // Clone the dynamic form fields and add separation
+        // Clone the dynamic form fields
         var dynamicForm = document.querySelector('.dynamicForm');
         var clone = dynamicForm.cloneNode(true);
-        clone.innerHTML += '<hr>'; // Add separation
+
+        // Remove any existing delete button from the cloned form to avoid duplicates
+        var existingDeleteButton = clone.querySelector('.btn-danger');
+        if (existingDeleteButton) {
+            existingDeleteButton.remove();
+        }
+
+        // Create a delete button
+        var deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.className = 'btn btn-danger btn-sm';
+        deleteButton.innerText = 'Delete';
+        deleteButton.style.marginTop = '10px';
+        
+        // Add delete button event listener
+        deleteButton.addEventListener('click', function() {
+            this.closest('.dynamicForm').remove();
+        });
+
+        // Append the delete button to the cloned form
+        clone.appendChild(deleteButton);
+
+        // Add a horizontal rule for separation
+        var hr = document.createElement('hr');
+        clone.appendChild(hr);
+
+        // Append the cloned form to the dynamicForms container
         document.getElementById('dynamicForms').appendChild(clone);
     });
 </script>

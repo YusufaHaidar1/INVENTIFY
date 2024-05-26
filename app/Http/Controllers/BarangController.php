@@ -6,6 +6,7 @@ use App\Models\KodeBarangModel;
 use App\Models\BarangModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -77,22 +78,22 @@ class BarangController extends Controller
         // Validate each field as an array
         $request->validate([
             'id_kode_barang.*'     => 'required|integer',
-            'id_user.*'            => 'required|integer',
             'nama_barang.*'        => 'required|string',
             'NUP.*'                => 'required|string',
             'harga_perolehan.*'    => 'required|string',
-            'tanggal_pencatatan.*' => 'required|date_format:Y-m-d\TH:i',
         ]);
+
+        $id_user = Auth::user()->id_user;
 
         // Iterate through each set of fields and create a new record for each
         foreach ($request->id_kode_barang as $key => $value) {
             BarangModel::create([
                 'id_kode_barang'        => $request->id_kode_barang[$key],
-                'id_user'               => $request->id_user[$key],
+                'id_user'               => $id_user,
                 'nama_barang'           => $request->nama_barang[$key],
                 'NUP'                   => $request->NUP[$key],
                 'harga_perolehan'       => $request->harga_perolehan[$key],
-                'tanggal_pencatatan'    => $request->tanggal_pencatatan[$key],
+                'tanggal_pencatatan'    => now(),
             ]);
         }
     
@@ -140,18 +141,18 @@ class BarangController extends Controller
             'nama_barang'           =>'required | string ',
             'NUP'                   => 'required | string | :detail_barang,'.$id.',id_barang',
             'harga_perolehan'       =>'required | string',
-            'tanggal_pencatatan'    =>'required | date_format:Y-m-d\TH:i',
             'id_kode_barang'        =>'required | integer',
-            'id_user'               =>'required | integer',
         ]);
+
+        $id_user = Auth::user()->id_user;
 
         BarangModel::find($id)->update([
             'id_kode_barang'        => $request->id_kode_barang,
-            'id_user'               => $request->id_user,
+            'id_user'               => $id_user,
             'nama_barang'           => $request->nama_barang,
             'NUP'                   => $request->NUP,
             'harga_perolehan'       => $request->harga_perolehan,
-            'tanggal_pencatatan'    => $request->tanggal_pencatatan,
+            'tanggal_pencatatan'    => now(),
         ]);
 
         return redirect('/admin/barang')->with('success', 'Data berhasil diubah!');;
