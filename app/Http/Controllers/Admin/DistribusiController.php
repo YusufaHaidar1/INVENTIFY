@@ -95,9 +95,10 @@ class DistribusiController extends Controller
         $request->validate([
             'id_barang'              =>'required|integer',
             'id_ruang'               =>'required|integer',
-            'id_detail_status_awal'  =>'required|integer',
-            'id_detail_status_akhir' =>'required|integer'
         ]);
+
+        $request->merge(['id_detail_status_awal' => 1]);
+        $request->merge(['id_detail_status_akhir' => 1]);
 
         DistribusiModel::create([
             'id_barang'              => $request->id_barang,

@@ -36,7 +36,7 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group row">
+        {{-- <div class="form-group row">
             <label class="col-1 control-label col-form-label">Status Awal</label>
             <div class="col-11">
                 <select class="form-control" id="id_detail_status_awal" name="id_detail_status_awal" required>
@@ -49,8 +49,8 @@
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
             </div>
-        </div>
-        <div class="form-group row">
+        </div> --}}
+        {{-- <div class="form-group row">
             <label class="col-1 control-label col-form-label">Status Akhir</label>
             <div class="col-11">
                 <select class="form-control" id="id_detail_status_akhir" name="id_detail_status_akhir" required>
@@ -63,7 +63,7 @@
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
             </div>
-        </div>
+        </div> --}}
         <div class="form-group row">
             <label class="col-1 control-label col-form-label"></label>
             <div class="col-11">
