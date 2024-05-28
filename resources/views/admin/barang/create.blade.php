@@ -7,74 +7,73 @@
     </div>
     <div class="card-body">
         <form method="POST" action="{{ url('/admin/barang') }}" class="form-horizontal">
-        @csrf
-        <!-- Dynamic form fields -->
-        <div id="dynamicForms">
-            <!-- Initial form fields -->
-            <div class="dynamicForm">
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Kode & Deskripsi Barang</label>
-                    <div class="col-11">
-                        <select class="form-control" name="id_kode_barang[]" required>
-                            <option value="">- Pilih Kode & Deskripsi Barang -</option>
-                            @foreach($kode as $item)
-                                <option value="{{ $item->id_kode_barang }}">{{ $item->kode_barang}} - {{ $item->deskripsi_barang}}</option>
-                            @endforeach
-                        </select>
-                        @error('id_kode_barang')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
+            @csrf
+            <!-- Dynamic form fields -->
+            <div id="dynamicForms">
+                <!-- Initial form fields -->
+                <div class="dynamicForm">
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Kode & Deskripsi Barang</label>
+                        <div class="col-11">
+                            <select class="form-control" name="id_kode_barang[]" required>
+                                <option value="">- Pilih Kode & Deskripsi Barang -</option>
+                                @foreach($kode as $item)
+                                    <option value="{{ $item->id_kode_barang }}">{{ $item->kode_barang}} - {{ $item->deskripsi_barang}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('id_kode_barang.*'))
+                                <small class="form-text text-danger">{{ $errors->first('id_kode_barang.*') }}</small>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Merk Barang</label>
-                    <div class="col-11">
-                        <input type="text" class="form-control" name="nama_barang[]" value="{{ old('nama_barang') }}" required>
-                        @error('nama_barang')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Merk Barang</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" name="nama_barang[]" value="{{ old('nama_barang.0') }}" required>
+                            @if ($errors->has('nama_barang.*'))
+                                <small class="form-text text-danger">{{ $errors->first('nama_barang.*') }}</small>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">NUP</label>
-                    <div class="col-11">
-                        <input type="number" class="form-control" name="NUP[]" value="{{ old('NUP') }}" required>
-                        @error('NUP')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">NUP</label>
+                        <div class="col-11">
+                            <input type="number" class="form-control" name="NUP[]" value="{{ old('NUP.0') }}" required>
+                            @if ($errors->has('NUP'))
+                                <small class="form-text text-danger">{{ $errors->first('NUP') }}</small>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Harga Perolehan</label>
-                    <div class="col-11">
-                        <input type="text" class="form-control" name="harga_perolehan[]" value="{{ old('harga_perolehan') }}" required>
-                        @error('harga_perolehan')
-                            <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Harga Perolehan</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" name="harga_perolehan[]" value="{{ old('harga_perolehan.0') }}" required>
+                            @if ($errors->has('harga_perolehan.*'))
+                                <small class="form-text text-danger">{{ $errors->first('harga_perolehan.*') }}</small>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End of dynamic form fields -->
-        
-        <div class="">
-            <div class="col-lg-12">
-                <button id="rowAdder" type="button" class="btn btn-primary">
-                    <span class="bi bi-plus-square-dotted"></span> Tambah Barang
-                </button>
+            <!-- End of dynamic form fields -->
+            
+            <div class="">
+                <div class="col-lg-12">
+                    <button id="rowAdder" type="button" class="btn btn-primary">
+                        <span class="bi bi-plus-square-dotted"></span> Tambah Barang
+                    </button>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <label class="col-1 control-label col-form-label"></label>
-            <div class="col-11">
-                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                <a class="btn btn-sm btn-default ml-1" href="{{ url('/admin/barang') }}">Kembali</a>
+            <br>
+            <div class="form-group row">
+                <label class="col-1 control-label col-form-label"></label>
+                <div class="col-11">
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    <a class="btn btn-sm btn-default ml-1" href="{{ url('/admin/barang') }}">Kembali</a>
+                </div>
             </div>
-        </div>
         </form>
     </div>
-</div>
 @endsection
 
 @push('css')

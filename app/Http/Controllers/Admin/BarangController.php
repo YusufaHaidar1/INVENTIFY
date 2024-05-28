@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\KodeBarangModel;
 use App\Models\BarangModel;
 use App\Models\UserModel;
@@ -84,6 +85,19 @@ class BarangController extends Controller
         ]);
 
         $id_user = Auth::user()->id_user;
+
+        foreach ($request->id_kode_barang as $key => $id_kode_barang) {
+            $NUP = $request->NUP[$key];
+    
+            // Check for duplicate combination of id_kode_barang and NUP
+            $existingRecord = BarangModel::where('id_kode_barang', $id_kode_barang)
+                                          ->where('NUP', $NUP)
+                                          ->first();
+    
+            if ($existingRecord) {
+                return redirect()->back()->withErrors(['NUP' => 'NUP ' . $NUP . ' already used for the given Kode Barang'])->withInput();
+            }
+        }
 
         // Iterate through each set of fields and create a new record for each
         foreach ($request->id_kode_barang as $key => $value) {
