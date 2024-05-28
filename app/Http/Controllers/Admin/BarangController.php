@@ -80,33 +80,30 @@ class BarangController extends Controller
         $request->validate([
             'id_kode_barang.*'     => 'required|integer',
             'nama_barang.*'        => 'required|string',
-            'NUP.*'                => 'required|string',
             'harga_perolehan.*'    => 'required|string',
         ]);
-
+    
         $id_user = Auth::user()->id_user;
-
-        foreach ($request->id_kode_barang as $key => $id_kode_barang) {
-            $NUP = $request->NUP[$key];
     
-            // Check for duplicate combination of id_kode_barang and NUP
-            $existingRecord = BarangModel::where('id_kode_barang', $id_kode_barang)
-                                          ->where('NUP', $NUP)
-                                          ->first();
-    
-            if ($existingRecord) {
-                return redirect()->back()->withErrors(['NUP' => 'NUP ' . $NUP . ' already used for the given Kode Barang'])->withInput();
-            }
-        }
-
         // Iterate through each set of fields and create a new record for each
         foreach ($request->id_kode_barang as $key => $value) {
+            $id_kode_barang = $request->id_kode_barang[$key];
+            $nama_barang = $request->nama_barang[$key];
+            $harga_perolehan = $request->harga_perolehan[$key];
+    
+            // Find the maximum NUP value for the given id_kode_barang
+            $maxNUP = BarangModel::where('id_kode_barang', $id_kode_barang)->max('NUP');
+    
+            // Increment the maximum NUP value by 1 for the new entry
+            $nextNUP = $maxNUP ? $maxNUP + 1 : 1;
+    
+            // Create a new record with the generated NUP
             BarangModel::create([
-                'id_kode_barang'        => $request->id_kode_barang[$key],
+                'id_kode_barang'        => $id_kode_barang,
                 'id_user'               => $id_user,
-                'nama_barang'           => $request->nama_barang[$key],
-                'NUP'                   => $request->NUP[$key],
-                'harga_perolehan'       => $request->harga_perolehan[$key],
+                'nama_barang'           => $nama_barang,
+                'NUP'                   => $nextNUP, // Automatically generated NUP
+                'harga_perolehan'       => $harga_perolehan,
                 'tanggal_pencatatan'    => now(),
             ]);
         }

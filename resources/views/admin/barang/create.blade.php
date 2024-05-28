@@ -36,15 +36,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-1 control-label col-form-label">NUP</label>
-                        <div class="col-11">
-                            <input type="number" class="form-control" name="NUP[]" value="{{ old('NUP.0') }}" required>
-                            @if ($errors->has('NUP'))
-                                <small class="form-text text-danger">{{ $errors->first('NUP') }}</small>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Harga Perolehan</label>
                         <div class="col-11">
                             <input type="text" class="form-control" name="harga_perolehan[]" value="{{ old('harga_perolehan.0') }}" required>
