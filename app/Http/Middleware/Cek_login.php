@@ -22,7 +22,7 @@ class Cek_login{
         //Menyimpan data user pada variabel user
         $user = Auth::user();
 
-        if ($user->id_role !== $roles) {
+        if ($user->id_role == $roles) {
             return $next($request);
         }
 
