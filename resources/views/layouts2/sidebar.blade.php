@@ -19,6 +19,12 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url('/verifikator/distribusi') }}" class="nav-link {{ $activeMenu == 'distribusi' ? 'active' : '' }} ">
+                    <i class="nav-icon fas fa-bookmark"></i>
+                    <p>Distribusi Barang JTI</p>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

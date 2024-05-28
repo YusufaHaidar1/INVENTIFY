@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerifikatorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Verifikator\DistribusiController as VerifikatorDistribusiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,6 +113,15 @@ Route::group(['middleware' => ['auth']], function(){
     });
     
     Route::group(['middleware' => ['cek_login:2']], function(){
+        Route::group(['prefix' => 'verifikator'], function(){
+            Route::group(['prefix' => 'distribusi'], function(){
+                Route::get('/', [VerifikatorDistribusiController::class, 'index']);
+                Route::post('/list', [VerifikatorDistribusiController::class, 'list']);
+                Route::get('/{id}', [VerifikatorDistribusiController::class, 'show']);
+                Route::get('/{id}/edit', [VerifikatorDistribusiController::class, 'edit']);
+                Route::put('/{id}', [VerifikatorDistribusiController::class, 'update']);
+            });
+        });
         Route::resource('verifikator', VerifikatorController::class);
     });
 });
