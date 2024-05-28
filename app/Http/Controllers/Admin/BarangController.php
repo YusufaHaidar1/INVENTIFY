@@ -150,7 +150,6 @@ class BarangController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'nama_barang'           =>'required | string ',
-            'NUP'                   => 'required | string | :detail_barang,'.$id.',id_barang',
             'harga_perolehan'       =>'required | string',
             'id_kode_barang'        =>'required | integer',
         ]);
@@ -161,7 +160,6 @@ class BarangController extends Controller
             'id_kode_barang'        => $request->id_kode_barang,
             'id_user'               => $id_user,
             'nama_barang'           => $request->nama_barang,
-            'NUP'                   => $request->NUP,
             'harga_perolehan'       => $request->harga_perolehan,
             'tanggal_pencatatan'    => now(),
         ]);

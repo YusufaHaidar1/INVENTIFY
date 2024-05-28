@@ -41,7 +41,7 @@
             <div class="form-group row">
                 <label class="col-1 control-label col-form-label">NUP</label>
                 <div class="col-11">
-                    <input type="text" class="form-control" id="NUP" name="NUP" value="{{ old('NUP', $barang->NUP) }}" required>
+                    <input type="text" class="form-control" id="NUP" name="NUP" value="{{ old('NUP', $barang->NUP) }}" disabled>
                 @error('NUP')
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
