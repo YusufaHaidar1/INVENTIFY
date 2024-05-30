@@ -99,6 +99,18 @@
                   </li>
                 </ul>
             </li>
+            <li class="nav-header">User Settings</li>
+            <li class="nav-item">
+              <a href="{{ url('/admin/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }} ">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Profile</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link">
+                <p>Logout</p>
+            </a>
+        </li>
         </ul>
     </nav>
 </div>

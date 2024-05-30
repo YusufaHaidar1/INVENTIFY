@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerifikatorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Verifikator\ProfileController as VerifikatorProfileController;
 use App\Http\Controllers\Verifikator\DistribusiController as VerifikatorDistribusiController;
 use Illuminate\Support\Facades\Route;
 
@@ -107,6 +108,11 @@ Route::group(['middleware' => ['auth']], function(){
                 Route::put('/{id}', [DistribusiController::class, 'update']);
                 Route::delete('/{id}', [DistribusiController::class, 'destroy']);
             });
+
+            Route::group(['prefix' => 'profile'], function(){
+                Route::get('/', [ProfileController::class, 'editProfile']);
+                Route::put('/{id}', [ProfileController::class, 'updateProfile']);
+            });
         });
 
         Route::resource('admin', AdminController::class);
@@ -120,6 +126,11 @@ Route::group(['middleware' => ['auth']], function(){
                 Route::get('/{id}', [VerifikatorDistribusiController::class, 'show']);
                 Route::get('/{id}/edit', [VerifikatorDistribusiController::class, 'edit']);
                 Route::put('/{id}', [VerifikatorDistribusiController::class, 'update']);
+            });
+
+            Route::group(['prefix' => 'profile'], function(){
+                Route::get('/', [VerifikatorProfileController::class, 'editProfile']);
+                Route::put('/{id}', [VerifikatorProfileController::class, 'updateProfile']);
             });
         });
         Route::resource('verifikator', VerifikatorController::class);
