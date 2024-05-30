@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INVENTIFY | Register </title>
+</head>
+</html>
+
 @extends('adminlte::auth.auth-page', ['auth_type' => 'register'])
 
 @php( $login_url = View::getSection('login_url')?? config('adminlte.login_url', 'login') )

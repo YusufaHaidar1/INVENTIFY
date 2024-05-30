@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INVENTIFY | Login </title>
+</head>
+</html>
 @extends('adminlte::auth.auth-page', ['auth_type' => 'login'])
 
 {{-- @section('adminlte_css_pre')
