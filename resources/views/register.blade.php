@@ -11,7 +11,7 @@
     @php( $register_url = $register_url ? url($register_url) : '' )
 @endif
 
-@section('auth_header', __('adminlte::adminlte.register_message'))
+@section('auth_header')
 
 @section('auth_body')
     <form action="{{ url('proses_register') }}" method="post">
@@ -119,7 +119,7 @@
 @section('auth_footer')
     <p class="my-0">
         <a href="{{ route('login') }}">
-            {{ __('adminlte::adminlte.i_already_have_a_membership') }}
+            I already have an Account
         </a>
     </p>
 @stop
