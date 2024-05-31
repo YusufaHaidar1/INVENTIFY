@@ -6,6 +6,7 @@
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
                 <a class="btn btn-sm btn-primary mt-1" href="{{ url('/admin/distribusi/create')}}">Tambah</a>
+                <button id="downloadButton" class="btn btn-sm btn-success mt-1">Download</button>
             </div>
         </div>
             <div class="card-body">
@@ -51,6 +52,50 @@
 @push('css')
 @endpush
 @push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+<script>
+    document.getElementById('downloadButton').addEventListener('click', function() {
+        // Get the original table
+        var originalTable = document.getElementById('table_distribusi');
+        
+        // Create a new table element
+        var newTable = document.createElement('table');
+        var newThead = document.createElement('thead');
+        var newTbody = document.createElement('tbody');
+        
+        // Copy the header row, excluding the last cell ("Aksi")
+        var originalThead = originalTable.querySelector('thead');
+        var originalHeaderRow = originalThead.rows[0];
+        var newHeaderRow = newThead.insertRow(0);
+        for (var i = 0; i < originalHeaderRow.cells.length - 1; i++) {
+            var newCell = newHeaderRow.insertCell(i);
+            newCell.innerHTML = originalHeaderRow.cells[i].innerHTML;
+        }
+        newTable.appendChild(newThead);
+        
+        // Copy the body rows, excluding the last cell ("Aksi")
+        var originalTbody = originalTable.querySelector('tbody');
+        for (var i = 0; i < originalTbody.rows.length; i++) {
+            var originalRow = originalTbody.rows[i];
+            var newRow = newTbody.insertRow(i);
+            for (var j = 0; j < originalRow.cells.length - 1; j++) {
+                var newCell = newRow.insertCell(j);
+                newCell.innerHTML = originalRow.cells[j].innerHTML;
+            }
+        }
+        newTable.appendChild(newTbody);
+
+        // Create a new workbook and a worksheet from the new table
+        var wb = XLSX.utils.book_new();
+        var ws = XLSX.utils.table_to_sheet(newTable);
+
+        // Append the worksheet to the workbook
+        XLSX.utils.book_append_sheet(wb, ws, 'Table Data');
+
+        // Generate a file
+        XLSX.writeFile(wb, 'table_distribusi.xlsx');
+    });
+</script>
 
 <script>
     $(document).ready(function() {
