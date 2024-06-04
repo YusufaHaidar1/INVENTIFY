@@ -24,7 +24,7 @@
     @php( $register_url = $register_url ? url($register_url) : '' )
 @endif
 
-@section('auth_header')
+@section('auth_header', 'Welcome to INVENTIFY')
 
 @section('auth_body')
     @error('login_gagal')

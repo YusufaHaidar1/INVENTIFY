@@ -21,7 +21,7 @@
     @php( $register_url = $register_url ? url($register_url) : '' )
 @endif
 
-@section('auth_header')
+@section('auth_header', 'Register yourself as a Verifikator')
 
 @section('auth_body')
     <form action="{{ url('proses_register') }}" method="post">
