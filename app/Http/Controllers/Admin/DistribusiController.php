@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\BarangModel;
 use App\Models\DistribusiModel;
+use App\Models\KodeBarangModel;
 use App\Models\RuangModel;
 use App\Models\StatusModel;
 use Illuminate\Http\Request;
@@ -36,11 +37,12 @@ class DistribusiController extends Controller
 
     public function list(Request $request)
     {
-        $distribusis = DistribusiModel::select('id_distribusi', 'id_barang', 'id_ruang', 'id_detail_status_awal', 'id_detail_status_akhir')
-                        ->with('barang')
+        $distribusis = DistribusiModel::select('id_distribusi', 'detail_distribusi_barang.id_barang', 'id_ruang', 'id_detail_status_awal', 'id_detail_status_akhir')
+                        ->with('barang.kode')
                         ->with('ruang')
                         ->with('statusAwal')
                         ->with('statusAkhir');
+
 
         if ($request->id_barang) {
             $distribusis->where('id_barang', $request->id_barang);
@@ -57,14 +59,17 @@ class DistribusiController extends Controller
         }
 
         return DataTables::of($distribusis)
-            ->addIndexColumn() // menambahkan kolom index / no urut (default id_distribusi kolom: DT_RowIndex)
+            ->addIndexColumn()
+            ->addColumn('deskripsi_barang', function ($distribusi) {
+                return $distribusi->barang->kode->deskripsi_barang ?? ''; // Use the null coalescing operator to handle null values
+            })
             ->addColumn('aksi', function ($distribusi) { // menambahkan kolom aksi
                 $btn = '<a href="' . url('/admin/distribusi/' . $distribusi->id_distribusi) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('/admin/distribusi/' . $distribusi->id_distribusi . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/distribusi/' . $distribusi->id_distribusi) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm"onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
-            ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
+            ->rawColumns(['aksi', 'deskripsi_barang']) // memberitahu bahwa kolom aksi adalah html
             ->make(true);
     }
 
@@ -87,8 +92,9 @@ class DistribusiController extends Controller
         $ruang = RuangModel::all();
         $statusAwal = StatusModel::all();
         $statusAkhir = StatusModel::all();
+        $kode = DistribusiModel::with('barang.kode')->get();
 
-        return view('admin.distribusi.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'ruang' => $ruang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'ruang' => $ruang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'kode'=>$kode, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
@@ -133,6 +139,7 @@ class DistribusiController extends Controller
         $barang = BarangModel::all();
         $statusAwal = StatusModel::all();
         $statusAkhir = StatusModel::all();
+        $kode = DistribusiModel::with('barang.kode')->get();
 
         $breadcrumb = (object)[
             'title' => 'Edit Data Distribusi Barang JTI',
@@ -145,7 +152,7 @@ class DistribusiController extends Controller
 
         $activeMenu = 'distribusi';
 
-        return view('admin.distribusi.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'distribusi' => $distribusi, 'kode' => $kode, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, $id){

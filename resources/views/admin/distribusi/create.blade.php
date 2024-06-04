@@ -12,9 +12,9 @@
             <label class="col-1 control-label col-form-label">Barang</label>
             <div class="col-11">
                 <select class="form-control" id="id_barang" name="id_barang" required>
-                    <option value="">- Pilih NUP & Barang -</option>
+                    <option value="">- Pilih Jenis Barang, NUP & Merk Barang -</option>
                     @foreach($barang as $item)
-                        <option value="{{ $item->id_barang }}">{{ $item->NUP }} - {{ $item->nama_barang }}</option>
+                        <option value="{{ $item->id_barang }}">{{ $item->kode->deskripsi_barang }} - {{ $item->NUP }} - {{ $item->nama_barang }}</option>
                     @endforeach
                 </select>
                 @error('id_barang')
@@ -36,34 +36,6 @@
                 @enderror
             </div>
         </div>
-        {{-- <div class="form-group row">
-            <label class="col-1 control-label col-form-label">Status Awal</label>
-            <div class="col-11">
-                <select class="form-control" id="id_detail_status_awal" name="id_detail_status_awal" required>
-                    <option value="">- Pilih Status Awal -</option>
-                @foreach($statusAwal as $item)
-                    <option value="{{ $item->id_detail_status }}">{{ $item->kode_status}} - {{ $item->nama_status}}</option>
-                @endforeach
-                </select>
-                @error('id_detail_status_awal')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-        </div> --}}
-        {{-- <div class="form-group row">
-            <label class="col-1 control-label col-form-label">Status Akhir</label>
-            <div class="col-11">
-                <select class="form-control" id="id_detail_status_akhir" name="id_detail_status_akhir" required>
-                    <option value="">- Pilih Status Akhir -</option>
-                @foreach($statusAkhir as $item)
-                    <option value="{{ $item->id_detail_status }}">{{ $item->kode_status}} - {{ $item->nama_status}}</option>
-                @endforeach
-                </select>
-                @error('id_detail_status_akhir')
-                    <small class="form-text text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-        </div> --}}
         <div class="form-group row">
             <label class="col-1 control-label col-form-label"></label>
             <div class="col-11">

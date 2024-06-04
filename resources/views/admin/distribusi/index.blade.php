@@ -36,7 +36,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama Barang</th>
+                            <th>Jenis Barang</th>
+                            <th>Merk Barang</th>
                             <th>NUP</th>
                             <th>Ruangan</th>
                             <th>Status Awal</th>
@@ -117,34 +118,40 @@
                 searchable: false
                 },
                 {
+                data: "deskripsi_barang",
+                className: "",
+                orderable: false,
+                searchable: true,
+                },
+                {
                 data: "barang.nama_barang",
                 className: "",
-                orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
                 searchable: true // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
                 data: "barang.NUP",
                 className: "",
-                orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
                 searchable: true // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
                 data: "ruang.nama_ruang",
                 className: "",
-                orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
                 data: "status_awal.nama_status",
                 className: "",
-                orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
                 data: "status_akhir.nama_status",
                 className: "",
-                orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
                 },
                 {
                 data: "aksi",

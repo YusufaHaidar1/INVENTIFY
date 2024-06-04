@@ -19,9 +19,9 @@
                 <label class="col-1 control-label col-form-label">Barang</label>
                 <div class="col-11">
                     <select class="form-control" id="id_barang" name="id_barang" required>
-                        <option value="">- Pilih NUP & Barang -</option>
+                        <option value="">- Pilih Jenis Barang & NUP & Merk Barang -</option>
                     @foreach($barang as $item)
-                        <option value="{{ $item->id_barang }}" @if($item->id_barang == $distribusi->id_barang) selected @endif>{{ $item->NUP}} - {{ $item->nama_barang}}</option>
+                        <option value="{{ $item->id_barang }}" @if($item->id_barang == $distribusi->id_barang) selected @endif>{{ $item->kode->deskripsi_barang }} - {{ $item->NUP }} - {{ $item->nama_barang }}</option>
                     @endforeach
                     </select>
                     @error('id_barang')

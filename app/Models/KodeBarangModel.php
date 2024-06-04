@@ -15,4 +15,7 @@ class KodeBarangModel extends Model
 
     protected $fillable = ['kode_barang', 'satuan', 'deskripsi_barang'];
 
+    public function barang(){
+        return $this->belongsToMany(BarangModel::class);
+    }
 }
