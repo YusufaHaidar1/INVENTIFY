@@ -100,70 +100,71 @@
 
 <script>
     $(document).ready(function() {
-        var dataDistribusi = $('#table_distribusi').DataTable({
-            serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
-            ajax: {
+    var dataDistribusi = $('#table_distribusi').DataTable({
+        serverSide: true,
+        ajax: {
             "url": "{{ url('/admin/distribusi/list') }}",
             "dataType": "json",
             "type": "POST",
-            "data": function ( d ) {
+            "data": function(d) {
                 d.id_ruang = $('#id_ruang').val();
             }
-            },
-            columns: [
-                {
-                data: "DT_RowIndex", // nomor urut dari laravel datatable addIndexColumn()
+        },
+        columns: [
+            {
+                data: "DT_RowIndex",
                 className: "text-center",
                 orderable: false,
                 searchable: false
-                },
-                {
+            },
+            {
                 data: "deskripsi_barang",
                 className: "",
                 orderable: false,
                 searchable: true,
-                },
-                {
-                data: "barang.nama_barang",
+            },
+            {
+                data: "nama_barang",
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: true // searchable: true, jika ingin kolom ini bisa dicari
-                },
-                {
-                data: "barang.NUP",
+                orderable: false,
+                searchable: true
+            },
+            {
+                data: "NUP",
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: true // searchable: true, jika ingin kolom ini bisa dicari
-                },
-                {
-                data: "ruang.nama_ruang",
+                orderable: false,
+                searchable: true
+            },
+            {
+                data: "nama_ruang", // Use the key from the formatted data
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-                },
-                {
-                data: "status_awal.nama_status",
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: "status_awal", // Use the key from the formatted data
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-                },
-                {
-                data: "status_akhir.nama_status",
+                orderable: false,
+                searchable: true
+            },
+            {
+                data: "status_akhir", // Use the key from the formatted data
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-                },
-                {
+                orderable: false,
+                searchable: true
+            },
+            {
                 data: "aksi",
                 className: "",
-                orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-                }
-            ]
-        });
-        $('#id_ruang').on('change', function() {
-            dataDistribusi.ajax.reload();
-        });
+                orderable: false,
+                searchable: false
+            }
+        ]
     });
+
+    $('#id_ruang').on('change', function() {
+        dataDistribusi.ajax.reload();
+    });
+});
 </script>
 @endpush

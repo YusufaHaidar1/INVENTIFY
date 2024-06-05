@@ -57,16 +57,29 @@ class DistribusiController extends Controller
             });
         }
 
-        return DataTables::of($distribusis)
+        $data = $distribusis->get()->map(function ($distribusi) {
+            return [
+                'id_distribusi' => $distribusi->id_distribusi,
+                'id_barang' => $distribusi->id_barang,
+                'id_ruang' => $distribusi->id_ruang,
+                'id_detail_status_awal' => $distribusi->id_detail_status_awal,
+                'id_detail_status_akhir' => $distribusi->id_detail_status_akhir,
+                'deskripsi_barang' => $distribusi->barang->kode->deskripsi_barang ?? '',
+                'nama_barang' => $distribusi->barang->nama_barang ?? '', // Add this line
+                'NUP' => $distribusi->barang->NUP ?? '', // Add this line
+                'nama_ruang' => $distribusi->ruang->nama_ruang ?? '',
+                'status_awal' => $distribusi->statusAwal->nama_status ?? '',
+                'status_akhir' => $distribusi->statusAkhir->nama_status ?? '',
+            ];
+        });
+    
+        return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('deskripsi_barang', function ($distribusi) {
-                return $distribusi->barang->kode->deskripsi_barang ?? ''; // Use the null coalescing operator to handle null values
-            })
-            ->addColumn('aksi', function ($distribusi) { // menambahkan kolom aksi
-                $btn = '<a href="' . url('/verifikator/distribusi/' . $distribusi->id_distribusi . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+            ->addColumn('aksi', function ($distribusi) {
+                $btn = '<a href="' . url('/verifikator/distribusi/' . $distribusi['id_distribusi'] . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 return $btn;
             })
-            ->rawColumns(['aksi', 'deskripsi_barang']) // memberitahu bahwa kolom aksi adalah html
+            ->rawColumns(['aksi'])
             ->make(true);
     }
 
