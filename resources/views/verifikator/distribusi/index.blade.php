@@ -38,6 +38,8 @@
                             <th>Ruangan</th>
                             <th>Status Awal</th>
                             <th>Status Akhir</th>
+                            <th>Tanggal Perubahan</th>
+                            <th>Verifikator</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -104,6 +106,25 @@
                 className: "",
                 orderable: false,
                 searchable: true
+            },
+            {
+                data: "tanggal_perubahan",
+                className: "",
+                orderable: true,
+                searchable: false,
+            },
+            {
+                data: "user", // Use the key from the formatted data
+                className: "",
+                orderable: false,
+                searchable: true,
+                render: function(data, type, row) {
+                    if (data === '') {
+                        return "Belum di Verifikasi";
+                    } else {
+                        return data;
+                    }
+                }
             },
             {
                 data: "aksi",

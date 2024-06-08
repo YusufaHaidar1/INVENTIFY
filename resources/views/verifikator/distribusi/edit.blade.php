@@ -71,6 +71,31 @@
                     @enderror
                 </div>
             </div>
+            </table>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_distribusi">
+                    <thead>
+                        <tr>
+                            <th>Tahun</th>
+                            <th>Tanggal Perubahan</th>
+                            <th>Status Akhir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!$logs->isEmpty())
+                            <tr>
+                                <td>{{ $logs->first()['tahun'] }}</td>
+                                <td>{{ $logs->first()['tanggal_perubahan'] }}</td>
+                                <td>{{ $logs->first()['status_akhir'] }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td colspan="3">Belum ada Perubahan</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
             <div class="form-group row">
                 <label class="col-1 control-label col-form-label"></label>
                 <div class="col-11">

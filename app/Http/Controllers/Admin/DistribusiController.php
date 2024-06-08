@@ -9,6 +9,7 @@ use App\Models\DistribusiModel;
 use App\Models\KodeBarangModel;
 use App\Models\RuangModel;
 use App\Models\StatusModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -31,17 +32,26 @@ class DistribusiController extends Controller
         $statusAkhir = StatusModel::all();
         $ruang = RuangModel::all();
         $barang = BarangModel::all();
+        $user = UserModel::all();
 
-        return view('admin.distribusi.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'ruang' => $ruang, 'barang' => $barang, 'statusAwal' => $statusAwal, 'statusAkhir' => $statusAkhir, 'activeMenu' => $activeMenu]);
+        return view('admin.distribusi.index', [
+            'breadcrumb' => $breadcrumb, 
+            'page' => $page, 
+            'ruang' => $ruang, 
+            'barang' => $barang, 
+            'statusAwal' => $statusAwal, 
+            'statusAkhir' => $statusAkhir,
+            'user' => $user, 
+            'activeMenu' => $activeMenu]);
     }
 
-    public function list(Request $request)
-{
-    $distribusis = DistribusiModel::select('id_distribusi', 'detail_distribusi_barang.id_barang', 'id_ruang', 'id_detail_status_awal', 'id_detail_status_akhir')
+    public function list(Request $request){
+    $distribusis = DistribusiModel::select('id_distribusi', 'detail_distribusi_barang.id_barang', 'id_ruang', 'id_detail_status_awal', 'id_detail_status_akhir', 'id_user')
         ->with('barang.kode')
         ->with('ruang')
         ->with('statusAwal')
-        ->with('statusAkhir');
+        ->with('statusAkhir')
+        ->with('user');
 
     if ($request->id_barang) {
         $distribusis->where('id_barang', $request->id_barang);
@@ -51,6 +61,10 @@ class DistribusiController extends Controller
         $distribusis->where('id_ruang', $request->id_ruang);
     }
 
+    if ($request->id_ruang) {
+        $distribusis->where('id_user', $request->id_user);
+    }
+
     if ($request->id_detail_status) {
         $distribusis->whereHas('detail_status', function ($query) use ($request) {
             $query->where('id', $request->id_detail_status);
@@ -58,6 +72,11 @@ class DistribusiController extends Controller
     }
 
     $data = $distribusis->get()->map(function ($distribusi) {
+        $logPerubahan = DB::table('log_perubahan')
+        ->where('id_distribusi', $distribusi->id_distribusi)
+        ->orderBy('tanggal_perubahan', 'desc')
+        ->first();
+
         return [
             'id_distribusi' => $distribusi->id_distribusi,
             'id_barang' => $distribusi->id_barang,
@@ -70,6 +89,8 @@ class DistribusiController extends Controller
             'nama_ruang' => $distribusi->ruang->nama_ruang ?? '',
             'status_awal' => $distribusi->statusAwal->nama_status ?? '',
             'status_akhir' => $distribusi->statusAkhir->nama_status ?? '',
+            'user' => $distribusi->user->nama ?? '',
+            'tanggal_perubahan' => $logPerubahan ? $logPerubahan->tanggal_perubahan : null,
         ];
     });
 
@@ -130,18 +151,48 @@ class DistribusiController extends Controller
     public function show(string $id){
         $distribusi = DistribusiModel::with('ruang')->with('barang')->find($id);
 
-        $breadcrumb = (object)[
-            'title' => 'Detail Distribusi Barang JTI',
-            'list' => ['Home', 'Distribusi', 'Detail']
-        ];
-
-        $page = (object)[
-            'title' => 'Detail Distribusi Barang JTI',
-        ];
-
-        $activeMenu = 'distribusi';
-
-        return view('admin.distribusi.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'distribusi' => $distribusi, 'activeMenu' => $activeMenu]);
+        if ($distribusi) {
+            $logPerubahan = DB::table('log_perubahan')
+                ->where('id_distribusi', $id)
+                ->orderBy('tanggal_perubahan', 'desc') // Order by date to get the latest status
+                ->get();
+    
+            $processedLogs = $logPerubahan->map(function ($log) use ($distribusi) {
+                return [
+                    'tahun' => date('Y', strtotime($log->tanggal_perubahan)), // Extract year from tanggal_perubahan
+                    'tanggal_perubahan' => $log->tanggal_perubahan,
+                    'status_akhir' => $distribusi->statusAkhir->nama_status
+                ];
+            });
+    
+            $latestStatusByYear = [];
+            foreach ($processedLogs as $log) {
+                $year = $log['tahun'];
+                $latestStatusByYear[$year] = $log['status_akhir'];
+            }
+    
+            $breadcrumb = (object)[
+                'title' => 'Detail Distribusi Barang JTI',
+                'list' => ['Home', 'Distribusi', 'Detail']
+            ];
+    
+            $page = (object)[
+                'title' => 'Detail Distribusi Barang JTI',
+            ];
+    
+            $activeMenu = 'distribusi';
+    
+            return view('admin.distribusi.show', [
+                'breadcrumb' => $breadcrumb,
+                'page' => $page,
+                'distribusi' => $distribusi,
+                'activeMenu' => $activeMenu,
+                'logs' => $processedLogs // Pass the processed logs to the view
+            ]);
+        } else {
+            // Handle the case where no DistribusiModel record is found
+            return redirect()->back()->with('error', 'Distribusi not found');
+        }
     }
 
     public function edit(string $id){

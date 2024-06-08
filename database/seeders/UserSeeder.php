@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Yusufa Haidar',
                 'email' => 'haidardewa@gmail.com',
                 'no_hp' => '081234567890',
-                'username' => 'RyuzeiGG',
+                'username' => 'admin',
                 'password' => Hash::make('123456')
             ],
             [
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Richard Santana',
                 'email' => 'RSSantana@yahoo.com',
                 'no_hp' => '087569321458',
-                'username' => 'RSSantana',
+                'username' => 'verifikator',
                 'password' => Hash::make('123456')
             ]
         ];
