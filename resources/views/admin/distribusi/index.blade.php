@@ -160,6 +160,13 @@
                 className: "",
                 orderable: true,
                 searchable: false,
+                render: function(data, type, row) {
+                    if (data === '' || data === null) {
+                        return "Belum di Rubah";
+                    } else {
+                        return data;
+                    }
+                }
             },
             {
                 data: "user", // Use the key from the formatted data

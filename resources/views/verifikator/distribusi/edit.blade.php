@@ -82,17 +82,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (!$logs->isEmpty())
+                        @forelse ($logs as $log)
                             <tr>
-                                <td>{{ $logs->first()['tahun'] }}</td>
-                                <td>{{ $logs->first()['tanggal_perubahan'] }}</td>
-                                <td>{{ $logs->first()['status_akhir'] }}</td>
+                                <td>{{ $log['tahun'] }}</td>
+                                <td>{{ $log['tanggal_perubahan'] }}</td>
+                                <td>{{ $log['status_akhir'] }}</td>
                             </tr>
-                        @else
+                        @empty
                             <tr>
                                 <td colspan="3">Belum ada Perubahan</td>
                             </tr>
-                        @endif
+                        @endforelse
                     </tbody>
                 </table>
             </div>

@@ -118,21 +118,18 @@ class DistribusiController extends Controller
         $statusAwal = StatusModel::all();
         $statusAkhir = StatusModel::all();
 
-        $distribusi2 = DistribusiModel::with('ruang')->with('barang')->find($id);
-
-        if ($distribusi2) {
             $logPerubahan = DB::table('log_perubahan')
                 ->where('id_distribusi', $id)
                 ->orderBy('tanggal_perubahan', 'desc') // Order by date to get the latest status
                 ->get();
     
-            $processedLogs = $logPerubahan->map(function ($log) use ($distribusi2) {
-                return [
-                    'tahun' => date('Y', strtotime($log->tanggal_perubahan)), // Extract year from tanggal_perubahan
-                    'tanggal_perubahan' => $log->tanggal_perubahan,
-                    'status_akhir' => $distribusi2->statusAkhir->nama_status
-                ];
-            });
+                $processedLogs = $logPerubahan->map(function ($log) {
+                    return [
+                        'tahun' => date('Y', strtotime($log->tanggal_perubahan)),
+                        'tanggal_perubahan' => $log->tanggal_perubahan,
+                        'status_akhir' => $log->status_akhir // Use the nama_status column from log_perubahan table
+                    ];
+                });
     
             $latestStatusByYear = [];
             foreach ($processedLogs as $log) {
@@ -161,10 +158,6 @@ class DistribusiController extends Controller
             'distribusi' => $distribusi,
             'logs' => $processedLogs, 
             'activeMenu' => $activeMenu]);
-        } else {
-            // Handle the case where no DistribusiModel record is found
-            return redirect()->back()->with('error', 'Distribusi not found');
-        }
     }
 
     public function update(Request $request, $id){

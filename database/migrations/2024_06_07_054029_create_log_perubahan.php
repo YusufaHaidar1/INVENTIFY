@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_perubahan');
             $table->unsignedBigInteger('id_distribusi')->index();
             $table->dateTime('tanggal_perubahan');
+            $table->string('status_akhir');
         });
     }
 

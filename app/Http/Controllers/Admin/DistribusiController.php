@@ -157,13 +157,13 @@ class DistribusiController extends Controller
                 ->orderBy('tanggal_perubahan', 'desc') // Order by date to get the latest status
                 ->get();
     
-            $processedLogs = $logPerubahan->map(function ($log) use ($distribusi) {
-                return [
-                    'tahun' => date('Y', strtotime($log->tanggal_perubahan)), // Extract year from tanggal_perubahan
-                    'tanggal_perubahan' => $log->tanggal_perubahan,
-                    'status_akhir' => $distribusi->statusAkhir->nama_status
-                ];
-            });
+                $processedLogs = $logPerubahan->map(function ($log) {
+                    return [
+                        'tahun' => date('Y', strtotime($log->tanggal_perubahan)),
+                        'tanggal_perubahan' => $log->tanggal_perubahan,
+                        'status_akhir' => $log->status_akhir // Use the nama_status column from log_perubahan table
+                    ];
+                });
     
             $latestStatusByYear = [];
             foreach ($processedLogs as $log) {

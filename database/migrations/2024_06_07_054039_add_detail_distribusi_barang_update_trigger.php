@@ -17,11 +17,16 @@ return new class extends Migration
             AFTER UPDATE ON detail_distribusi_barang
             FOR EACH ROW
             BEGIN
-                IF OLD.id_detail_status_akhir != NEW.id_detail_status_akhir THEN
-                    INSERT INTO log_perubahan (id_distribusi, tanggal_perubahan)
-                    VALUES (NEW.id_distribusi, NOW());
-                END IF;
-            END;
+            IF OLD.id_detail_status_akhir != NEW.id_detail_status_akhir THEN
+                INSERT INTO log_perubahan (id_distribusi, tanggal_perubahan, status_akhir)
+                VALUES (NEW.id_distribusi, NOW(), CASE NEW.id_detail_status_akhir
+                                                    WHEN 1 THEN "Baik"
+                                                    WHEN 2 THEN "Rusak Ringan"
+                                                    WHEN 3 THEN "Rusak Berat"
+                                                    ELSE NULL
+                END);
+        END IF;
+    END;
         ');
     }
 
