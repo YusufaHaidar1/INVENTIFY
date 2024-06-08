@@ -23,6 +23,7 @@ class AdminController extends Controller
         $user_count = UserModel::count();
         $barang_count = BarangModel::count();
         $distribusi_count = DistribusiModel::count();
+        $barang_belum_terdistribusi = $barang_count - $distribusi_count;
 
         $activeMenu = 'dashboard'; // set menu yang sedang aktif
 
@@ -32,6 +33,7 @@ class AdminController extends Controller
             'activeMenu' => $activeMenu, 
             'user_count' => $user_count, 
             'barang_count' => $barang_count,
+            'barang_belum_terdistribusi' => $barang_belum_terdistribusi,
             'distribusi_count' => $distribusi_count]);
     }
 }

@@ -48,6 +48,16 @@
           <a href="http://localhost/INVENTIFY/public/admin/distribusi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ $barang_belum_terdistribusi }}</h3>
+
+            <p>Barang yang belum terdistribusi (Gudang JTI)</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container">
         <div class="card">
