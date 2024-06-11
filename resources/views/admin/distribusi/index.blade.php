@@ -162,7 +162,7 @@
                 searchable: false,
                 render: function(data, type, row) {
                     if (data === '' || data === null) {
-                        return "Belum di Rubah";
+                        return "Belum diubah";
                     } else {
                         return data;
                     }
