@@ -127,7 +127,7 @@
                 searchable: true,
                 render: function(data, type, row) {
                     if (data === '') {
-                        return "Belum di Verifikasi";
+                        return "Belum diverifikasi";
                     } else {
                         return data;
                     }
